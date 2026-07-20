@@ -1,0 +1,453 @@
+/* Nothing-Inspired Design System CSS Rules */
+
+@font-face {
+  font-family: 'Doto';
+  src: url('../fonts/Doto-ROND-wght.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('../fonts/Geist-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Geist';
+  src: url('../fonts/Geist-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'Geist Mono';
+  src: url('../fonts/GeistMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'Newsreader';
+  src: url('../fonts/Newsreader-Italic.ttf') format('truetype');
+  font-style: italic;
+}
+
+:root {
+  /* Dark theme is the default */
+  --bg: #000000;
+  --surface: #0E0E0E;
+  --raised: #171717;
+  --line: #222222;
+  --line-2: #333333;
+  --muted: #5A5A5A;
+  --secondary: #8C8C8C;
+  --primary: #EDEDED;
+  --display: #FFFFFF;
+  --accent: #D71921; /* Nothing red for fills */
+  --accent-text: #FF4438; /* Brightened on dark */
+  --accent-ink: #FFFFFF;
+  --success: #7BE38A;
+  --warning: #F2C94C;
+  --error: #FF5247;
+  --focus: rgba(59, 130, 246, 0.55);
+
+  --f-display: 'Doto', monospace;
+  --f-ui: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  --f-mono: 'Geist Mono', ui-monospace, monospace;
+  --f-head: 'Geist', 'Helvetica Neue', Arial, sans-serif;
+  --f-editorial: 'Newsreader', Georgia, serif;
+}
+
+body.light-theme {
+  --bg: #F2F2F2;
+  --surface: #FFFFFF;
+  --raised: #EDEDED;
+  --line: #E5E7EB;
+  --line-2: #CFCFCF;
+  --muted: #9A9A9A;
+  --secondary: #585A5A;
+  --primary: #1C1C1C;
+  --display: #000000;
+  --accent-text: #C2141C; /* Darkened on light */
+  --success: #3D8B4A;
+  --warning: #9C6B00;
+  --error: #D23B30;
+}
+
+/* Base Styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--primary);
+  font-family: var(--f-ui);
+  font-size: 16px;
+  line-height: 1.5;
+  font-variation-settings: 'ROND' 100; /* Locks Doto font to circular dots */
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Local-inverse background sparse dot field */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.42) 1.3px, transparent 1.3px);
+  background-size: 120px 120px;
+  background-position: center;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+/* Typography Hierarchy */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--f-head);
+  font-weight: 600;
+  color: var(--display);
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+/* Headings font role mapping */
+.display-text {
+  font-family: var(--f-display);
+  font-weight: 400; /* Don't bold to keep dots separate */
+  font-variation-settings: 'ROND' 100;
+  color: var(--display);
+}
+
+.mono-text {
+  font-family: var(--f-mono);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.editorial-text {
+  font-family: var(--f-editorial);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Card layout - frosted glass, borderless, shadowless */
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 8px;
+  padding: 24px;
+  transition: transform 200ms ease-in-out, opacity 200ms ease-in-out;
+  position: relative;
+  z-index: 1; /* Rises above dots */
+}
+
+/* Dark theme glass card look overrides for a better overlay effect */
+body.light-theme .glass-card {
+  background: rgba(255, 255, 255, 0.8);
+}
+body:not(.light-theme) .glass-card {
+  background: rgba(14, 14, 14, 0.7);
+}
+
+.glass-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Interactive Controls: Buttons (black/white inversion, NOT red) */
+.btn {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 200ms ease, transform 100ms ease;
+  border: none;
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn:hover {
+  opacity: 0.8;
+}
+
+/* Primary buttons invert background and text colors */
+.btn-primary {
+  background-color: var(--display);
+  color: var(--bg);
+}
+
+/* Outline buttons use line-2 border */
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
+  border: 1px solid var(--line-2);
+}
+
+/* Ghost buttons */
+.btn-ghost {
+  background-color: transparent;
+  color: var(--primary);
+  padding: 10px 0;
+}
+
+/* Chips/Tags: Pill, outline, active gets inversion */
+.chip {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  border: 1px solid var(--line-2);
+  background: transparent;
+  color: var(--primary);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.chip:hover, .chip.active {
+  background-color: var(--display);
+  color: var(--bg);
+  border-color: var(--display);
+}
+
+/* Form Inputs */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-label {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 12px;
+  font-family: var(--f-mono);
+  font-size: 14px;
+  background-color: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 6px;
+  color: var(--primary);
+  outline: none;
+  transition: border-color 200ms ease;
+}
+
+.input-field:focus {
+  border-color: transparent;
+  box-shadow: 0 0 0 2px var(--focus);
+}
+
+.input-error-msg {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--error);
+  margin-top: 4px;
+  text-transform: uppercase;
+}
+
+/* Tables: Geist Mono, left alignment text, right numbers, no zebra striping */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--f-mono);
+  font-size: 13px;
+}
+
+.data-table th, .data-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+
+.data-table th {
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+
+.data-table td.num {
+  text-align: right;
+  font-family: var(--f-mono);
+}
+
+.data-table tr {
+  transition: background-color 200ms ease;
+  position: relative;
+}
+
+/* Active/hovered row gets raised bg and red accent bar on left */
+.data-table tbody tr:hover {
+  background-color: var(--raised);
+}
+
+.data-table tbody tr::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--accent);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.data-table tbody tr:hover::before {
+  opacity: 1;
+}
+
+/* Toggle Switch (ON is white track, black knob, no red) */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-knob {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: var(--line-2);
+  border-radius: 9999px;
+  transition: background-color 200ms;
+}
+
+.slider-knob::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--bg);
+  border-radius: 50%;
+  transition: transform 200ms;
+}
+
+input:checked + .slider-knob {
+  background-color: var(--display);
+}
+
+input:checked + .slider-knob::before {
+  transform: translateX(20px);
+  background-color: var(--bg);
+}
+
+/* State machine dots */
+.state-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+.state-dot.idle {
+  background-color: var(--muted);
+}
+.state-dot.running {
+  background-color: var(--display);
+  animation: pulse 1s infinite alternate;
+}
+.state-dot.needs-input {
+  background-color: var(--accent);
+}
+.state-dot.done {
+  background-color: var(--secondary);
+}
+.state-dot.error {
+  border: 1.5px solid var(--error);
+  background-color: transparent;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+/* Stepper and calendar */
+.step-number, .date-cell {
+  font-family: var(--f-display);
+  font-variation-settings: 'ROND' 100;
+  font-weight: 400;
+}
+
+/* Container limits */
+.app-container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--line-2);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary);
+}
+
+/* Layout lines and ticks */
+.section-divider {
+  height: 1px;
+  background-color: var(--line);
+  margin: 40px 0;
+  position: relative;
+}
+
+.section-divider::before, .section-divider::after {
+  content: '';
+  position: absolute;
+  top: -4.5px;
+  border: 5px solid transparent;
+}
+.section-divider::before {
+  left: 0;
+  border-left-color: var(--line-2);
+}
+.section-divider::after {
+  right: 0;
+  border-right-color: var(--line-2);
+}
+
+/* Layout classes */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,500 @@
+/* App specific layout and responsive grid styles */
+
+.app-wrapper {
+  padding: 40px 0 80px;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 48px;
+}
+
+.header-status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+}
+
+.hero-section {
+  text-align: left;
+  margin-bottom: 64px;
+}
+
+.hero-title-main {
+  font-size: 56px;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 768px) {
+  .hero-title-main {
+    font-size: 40px;
+  }
+}
+
+.hero-subtitle {
+  font-size: 18px;
+  color: var(--secondary);
+  max-width: 600px;
+  margin-bottom: 24px;
+}
+
+.brand-quote {
+  font-size: 20px;
+  color: var(--secondary);
+  border-left: 1px solid var(--line);
+  padding-left: 20px;
+  margin: 32px 0;
+}
+
+/* Widgets Grid: Console and Glyph Side-by-side */
+.widgets-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 900px) {
+  .widgets-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Console component styling */
+.console-panel {
+  display: flex;
+  flex-direction: column;
+  height: 380px;
+  background-color: #050505 !important; /* Console stays dark */
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+
+body.light-theme .console-panel {
+  border-color: var(--line-2);
+}
+
+.console-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+.console-body {
+  flex-grow: 1;
+  padding: 16px;
+  overflow-y: auto;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  text-align: left;
+  color: #EDEDED; /* Console text stays white */
+}
+
+.console-line {
+  margin-bottom: 8px;
+  white-space: pre-wrap;
+}
+
+.console-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.console-prompt {
+  color: var(--accent-text);
+  font-weight: bold;
+}
+
+.console-input {
+  flex-grow: 1;
+  background: transparent;
+  border: none;
+  color: #FFFFFF;
+  font-family: var(--f-mono);
+  font-size: 13px;
+  outline: none;
+}
+
+/* Glyph Matrix Panel */
+.glyph-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.glyph-title-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 16px;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+}
+
+/* 25x25 Glyph LED Grid */
+.glyph-grid {
+  display: grid;
+  grid-template-columns: repeat(25, 1fr);
+  gap: 1.5px;
+  width: 250px;
+  height: 250px;
+  margin: 16px auto;
+  position: relative;
+}
+
+.glyph-led {
+  width: 100%;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  transition: background-color 150ms ease, box-shadow 150ms ease;
+}
+
+body.light-theme .glyph-led {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Physical circular mask: disable corners */
+.glyph-led.disabled {
+  background-color: transparent !important;
+  cursor: default !important;
+}
+
+.glyph-led.lit {
+  background-color: var(--display) !important;
+  box-shadow: 0 0 4px var(--display);
+}
+
+.glyph-led.signal {
+  background-color: var(--accent) !important;
+  box-shadow: 0 0 6px var(--accent);
+}
+
+.glyph-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+/* 9x9 Dot matrix custom icon */
+.dot-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  width: var(--gs, 24px);
+  height: var(--gs, 24px);
+  gap: 1px;
+}
+
+.dot-icon-cell {
+  border-radius: 50%;
+  background-color: transparent;
+}
+.dot-icon-cell.filled {
+  background-color: currentColor;
+}
+
+/* Segmented progress bar */
+.seg-bar {
+  display: flex;
+  gap: 2px;
+  margin-top: 8px;
+}
+
+.seg-block {
+  flex-grow: 1;
+  height: 12px;
+  background-color: var(--line);
+}
+
+.seg-block.filled {
+  background-color: var(--display);
+}
+
+.seg-block.limit {
+  background-color: var(--accent);
+}
+
+/* Skills list */
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 24px 0 48px;
+}
+
+/* Projects grid and project cards */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.project-card {
+  text-align: left;
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.project-title {
+  font-size: 20px;
+  margin: 0;
+}
+
+.project-stat {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+  margin-top: 16px;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.tech-tag {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--secondary);
+  border: 1px solid var(--line);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Contact Area details */
+.contact-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  text-align: left;
+  margin-bottom: 64px;
+}
+
+@media (max-width: 768px) {
+  .contact-section {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  text-align: center;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+}
+
+.colon {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  height: 20px;
+  width: 8px;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 4px;
+}
+.colon::before, .colon::after {
+  content: '';
+  width: 3.5px;
+  height: 3.5px;
+  background-color: var(--display);
+  border-radius: 50%;
+}
+
+/* About Me Section Grid and Tech Stack Styles */
+.about-grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+}
+
+.about-bio-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+}
+
+.about-tech-card {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  justify-items: center;
+  align-items: center;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.tech-stack-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--line);
+  transition: transform 200ms ease, background-color 200ms ease, border-color 200ms ease;
+  cursor: crosshair;
+}
+
+body.light-theme .tech-stack-item {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.tech-stack-item.empty-slot {
+  background-color: rgba(255, 255, 255, 0.01);
+  border-style: dashed;
+  border-color: var(--line);
+  cursor: default;
+}
+
+body.light-theme .tech-stack-item.empty-slot {
+  background-color: transparent;
+}
+
+.tech-stack-item:not(.empty-slot):hover {
+  transform: translateY(-2px);
+  background-color: rgba(255, 255, 255, 0.07);
+  border-color: var(--line-2);
+}
+
+body.light-theme .tech-stack-item:not(.empty-slot):hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.tech-icon {
+  color: var(--secondary);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.tech-stack-item:hover .tech-icon {
+  color: var(--accent-text);
+  transform: scale(1.05);
+}
+
+@media (max-width: 600px) {
+  .tech-stack-grid {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+  .tech-stack-item {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
+
+/* Certificate image preview and hover transitions */
+.certificate-img-container {
+  width: 100%;
+  height: 140px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  margin-top: 12px;
+  margin-bottom: 12px;
+  background-color: var(--surface);
+}
+
+.certificate-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+
+.project-card:hover .certificate-thumbnail {
+  transform: scale(1.05);
+}
+
+/* Interactive Dot-Matrix Profile Photo Styling */
+.pixel-photo-container {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-2);
+  margin: 0 auto 24px auto;
+  cursor: crosshair;
+  background-color: var(--bg);
+}
+
+.about-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 400ms ease, transform 400ms ease;
+  filter: grayscale(100%) contrast(110%);
+}
+
+.dot-matrix-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--bg) 35%, transparent 40%);
+  background-size: 5px 5px;
+  opacity: 0;
+  transition: opacity 400ms ease;
+  pointer-events: none;
+}
+
+/* Hover Effect: Convert to high-contrast pixel dot style */
+.pixel-photo-container:hover .about-photo {
+  filter: grayscale(100%) contrast(350%) brightness(140%) blur(0.4px);
+  transform: scale(1.05);
+}
+
+.pixel-photo-container:hover .dot-matrix-overlay {
+  opacity: 0.9;
+  mix-blend-mode: multiply;
+}
+
+/* Light theme overrides for better visibility */
+body.light-theme .pixel-photo-container:hover .about-photo {
+  filter: grayscale(100%) contrast(250%) brightness(110%) blur(0.4px);
+}
+

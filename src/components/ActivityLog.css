@@ -1,0 +1,180 @@
+/* Activity Log: Side-by-Side Grid Layout Styles */
+
+.activity-grid-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 24px;
+  width: 100%;
+}
+
+.activity-info-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 360px;
+}
+
+.activity-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+}
+
+.caption-index {
+  color: var(--accent-text);
+  font-family: var(--f-mono);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.card-type {
+  color: var(--secondary);
+  font-family: var(--f-mono);
+  font-size: 11px;
+}
+
+.activity-card-body {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.activity-title {
+  font-family: var(--f-head);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--display);
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.activity-organization {
+  font-family: var(--f-mono);
+  font-size: 11px;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 20px 0;
+}
+
+.activity-meta-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-label {
+  font-family: var(--f-mono);
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+}
+
+.meta-value {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  color: var(--primary);
+  letter-spacing: 0.04em;
+}
+
+.activity-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.activity-nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.nav-btn {
+  padding: 6px 12px !important;
+  font-size: 10px !important;
+}
+
+/* Image Viewport */
+.activity-image-viewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--surface);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.activity-slider-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 600ms ease-in-out;
+  z-index: 1;
+}
+
+.activity-slider-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Discrete Tick Marks Selector (Dashes matching segmented bar) */
+.activity-slider-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.slider-dash-btn {
+  width: 16px;
+  height: 4px;
+  border: none;
+  background-color: var(--line-2);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 200ms ease;
+  border-radius: 0; /* Pure rectangles */
+}
+
+.slider-dash-btn:hover {
+  background-color: var(--secondary);
+}
+
+.slider-dash-btn.active {
+  background-color: var(--display);
+}
+
+/* Responsive adjustment */
+@media (max-width: 768px) {
+  .activity-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .activity-image-viewport {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .activity-info-card {
+    min-height: auto;
+  }
+}
