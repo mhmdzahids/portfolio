@@ -660,3 +660,14 @@ body.light-theme .pixel-photo-container:hover .about-photo {
   color: var(--accent-text);
 }
 
+/* Clickable Project Research Cards */
+.project-link-card {
+  cursor: pointer;
+  transition: transform 300ms ease, border-color 300ms ease, box-shadow 300ms ease;
+}
+
+.project-link-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-text) !important;
+}
+

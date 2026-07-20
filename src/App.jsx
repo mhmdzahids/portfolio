@@ -9,6 +9,8 @@ import deanImg from './assets/certificates/Dean honor.jpeg';
 import mobilityImg from './assets/certificates/Mobility.jpeg';
 import aboutMeImg from './assets/about-me/about-me.jpeg';
 import cvPdf from './assets/cv/Muhammad_Zahid_CV_Unity_Intern.pdf';
+import paper1Pdf from './assets/projects/Comparative Analysis of Statistical Learning Models and CNNs for.pdf';
+import paper2Pdf from './assets/projects/Return-Cancellation Risk.pdf';
 
 export default function App() {
   // Theme Toggle State
@@ -43,26 +45,28 @@ export default function App() {
     if (loadingStage !== 'typing') return;
 
     const fullText = 'HELLO.';
-    let currentIndex = 0;
-    
+
     const typingInterval = setInterval(() => {
-      if (currentIndex < fullText.length) {
-        setWelcomeText((prev) => prev + fullText[currentIndex]);
-        currentIndex++;
-      } else {
-        clearInterval(typingInterval);
-        
-        // Wait 800ms after typing finished, then fade out
-        setTimeout(() => {
-          setLoadingStage('fade-out');
-          
-          // Wait 600ms for fade-out transition, then complete
+      setWelcomeText((prev) => {
+        if (prev.length < fullText.length) {
+          return prev + fullText[prev.length];
+        } else {
+          clearInterval(typingInterval);
+
+          // Wait 800ms after typing finished, then fade out
           setTimeout(() => {
-            setLoadingStage('done');
-          }, 600);
-        }, 800);
-      }
-    }, 1500 / fullText.length); // Complete typing in 1.5 seconds
+            setLoadingStage('fade-out');
+
+            // Wait 600ms for fade-out transition, then complete
+            setTimeout(() => {
+              setLoadingStage('done');
+            }, 600);
+          }, 800);
+
+          return prev;
+        }
+      });
+    }, 250); // 250ms per character (total ~1.5s)
 
     return () => clearInterval(typingInterval);
   }, [loadingStage]);
@@ -215,8 +219,8 @@ export default function App() {
             <div className="theme-options">
               <div className="theme-option-col">
                 <DotMatrixIcon name="moon" size="36px" className="onboarding-theme-icon" />
-                <button 
-                  className="btn btn-outline theme-opt-btn" 
+                <button
+                  className="btn btn-outline theme-opt-btn"
                   onClick={() => selectInitialTheme('dark')}
                 >
                   [ DARK_MODE ]
@@ -224,8 +228,8 @@ export default function App() {
               </div>
               <div className="theme-option-col">
                 <DotMatrixIcon name="sun" size="36px" className="onboarding-theme-icon" />
-                <button 
-                  className="btn btn-outline theme-opt-btn" 
+                <button
+                  className="btn btn-outline theme-opt-btn"
                   onClick={() => selectInitialTheme('light')}
                 >
                   [ LIGHT_MODE ]
@@ -362,7 +366,7 @@ export default function App() {
               <img src={aboutMeImg} alt="Muhammad Zahid Setiansyah" className="about-photo" />
               <div className="dot-matrix-overlay"></div>
             </div>
-            
+
             <div className="tech-stack-grid">
               {/* Row 1 */}
               <div className="tech-stack-item" title="UNITY">
@@ -421,7 +425,7 @@ export default function App() {
             PROJECTS.TXT
           </h2>
           <span className="mono-text" style={{ fontSize: '11px', color: 'var(--secondary)' }}>
-            TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>04</span> ACTIVE
+            TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>06</span> ACTIVE
           </span>
         </div>
 
@@ -505,6 +509,58 @@ export default function App() {
               <SegmentedBar value={100} label="SYSTEM INTEGRATED" limit={85} />
             </div>
           </div>
+
+          {/* Project 5: CNN vs Statistical Learning Paper */}
+          <a
+            href={paper1Pdf}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-card project-card project-link-card"
+            style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
+          >
+            <div className="project-header">
+              <h3 className="project-title">CNN vs Statistical Models</h3>
+              <DotMatrixIcon name="paper" size="20px" style={{ color: 'var(--secondary)' }} />
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
+              Comparative research paper evaluating classical statistical learning models against deep learning Convolutional Neural Networks (CNNs).
+            </p>
+            <div className="project-tech">
+              <span className="tech-tag">PYTHON</span>
+              <span className="tech-tag">TENSORFLOW</span>
+              <span className="tech-tag">CNN</span>
+              <span className="tech-tag">ML_PAPER</span>
+            </div>
+            <div className="project-stat">
+              <SegmentedBar value={100} label="UNIVERSITY RESEARCH" limit={85} />
+            </div>
+          </a>
+
+          {/* Project 6: Return-Cancellation Risk Paper */}
+          <a
+            href={paper2Pdf}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="glass-card project-card project-link-card"
+            style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
+          >
+            <div className="project-header">
+              <h3 className="project-title">Return-Cancellation Risk</h3>
+              <DotMatrixIcon name="paper" size="20px" style={{ color: 'var(--secondary)' }} />
+            </div>
+            <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
+              Machine learning research paper analyzing and predicting return-cancellation risks using statistical models and classifiers.
+            </p>
+            <div className="project-tech">
+              <span className="tech-tag">PYTHON</span>
+              <span className="tech-tag">SCIKIT-LEARN</span>
+              <span className="tech-tag">PANDAS</span>
+              <span className="tech-tag">RISK_PAPER</span>
+            </div>
+            <div className="project-stat">
+              <SegmentedBar value={100} label="UNIVERSITY RESEARCH" limit={85} />
+            </div>
+          </a>
         </div>
       </section>
 
@@ -598,7 +654,7 @@ export default function App() {
                 <span className="mono-text" style={{ fontSize: '10px', color: 'var(--accent-text)' }}>[VERIFIED]</span>
                 <DotMatrixIcon name={cert.icon} size="20px" style={{ color: 'var(--secondary)' }} />
               </div>
-              
+
               <div className="certificate-img-container">
                 <img src={cert.image} alt={cert.title} className="certificate-thumbnail" />
               </div>
