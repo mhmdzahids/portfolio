@@ -14,6 +14,10 @@ export default function App() {
   // Theme Toggle State
   const [theme, setTheme] = useState('dark');
 
+  // Onboarding loading stage: 'theme-select' | 'typing' | 'fade-out' | 'done'
+  const [loadingStage, setLoadingStage] = useState('theme-select');
+  const [welcomeText, setWelcomeText] = useState('');
+
   // Live Clock State
   const [time, setTime] = useState(new Date());
 
@@ -33,6 +37,45 @@ export default function App() {
     const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  // Loading Onboarding Typing & Fade-out Effect
+  useEffect(() => {
+    if (loadingStage !== 'typing') return;
+
+    const fullText = 'HELLO.';
+    let currentIndex = 0;
+    
+    const typingInterval = setInterval(() => {
+      if (currentIndex < fullText.length) {
+        setWelcomeText((prev) => prev + fullText[currentIndex]);
+        currentIndex++;
+      } else {
+        clearInterval(typingInterval);
+        
+        // Wait 800ms after typing finished, then fade out
+        setTimeout(() => {
+          setLoadingStage('fade-out');
+          
+          // Wait 600ms for fade-out transition, then complete
+          setTimeout(() => {
+            setLoadingStage('done');
+          }, 600);
+        }, 800);
+      }
+    }, 1500 / fullText.length); // Complete typing in 1.5 seconds
+
+    return () => clearInterval(typingInterval);
+  }, [loadingStage]);
+
+  const selectInitialTheme = (selectedTheme) => {
+    setTheme(selectedTheme);
+    if (selectedTheme === 'light') {
+      document.body.classList.add('light-theme');
+    } else {
+      document.body.classList.remove('light-theme');
+    }
+    setLoadingStage('typing');
+  };
 
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
@@ -158,6 +201,47 @@ export default function App() {
       description: 'Certifies participation in the international student mobility exchange program in Malaysia, focusing on CS systems design.'
     }
   ];
+
+  if (loadingStage !== 'done') {
+    const isLightOnboarding = theme === 'light';
+    const onboardingThemeClass = isLightOnboarding ? 'light-onboarding' : 'dark-onboarding';
+    const fadeOutClass = loadingStage === 'fade-out' ? 'fade-out' : '';
+
+    return (
+      <div className={`onboarding-screen ${onboardingThemeClass} ${fadeOutClass}`}>
+        {loadingStage === 'theme-select' ? (
+          <div className="theme-select-container">
+            <h2 className="mono-text onboarding-title">SELECT_SYSTEM_THEME.CFG</h2>
+            <div className="theme-options">
+              <div className="theme-option-col">
+                <DotMatrixIcon name="moon" size="36px" className="onboarding-theme-icon" />
+                <button 
+                  className="btn btn-outline theme-opt-btn" 
+                  onClick={() => selectInitialTheme('dark')}
+                >
+                  [ DARK_MODE ]
+                </button>
+              </div>
+              <div className="theme-option-col">
+                <DotMatrixIcon name="sun" size="36px" className="onboarding-theme-icon" />
+                <button 
+                  className="btn btn-outline theme-opt-btn" 
+                  onClick={() => selectInitialTheme('light')}
+                >
+                  [ LIGHT_MODE ]
+                </button>
+              </div>
+            </div>
+            <div className="onboarding-brand mono-text">M_ZAHID.DEV // V1.0</div>
+          </div>
+        ) : (
+          <div className="welcome-container">
+            <h1 className="display-text welcome-header">{welcomeText}</h1>
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="app-container app-wrapper">

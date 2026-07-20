@@ -498,3 +498,165 @@ body.light-theme .pixel-photo-container:hover .about-photo {
   filter: grayscale(100%) contrast(250%) brightness(110%) blur(0.4px);
 }
 
+/* Onboarding Screen CSS Overlay */
+.onboarding-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 600ms ease;
+  pointer-events: auto;
+}
+
+.onboarding-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.42) 1.3px, transparent 1.3px);
+  background-size: 120px 120px;
+  background-position: center;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+.onboarding-screen.dark-onboarding {
+  background-color: #000000;
+  color: #EDEDED;
+}
+
+.onboarding-screen.light-onboarding {
+  background-color: #F2F2F2;
+  color: #1C1C1C;
+}
+
+.onboarding-screen.fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.theme-select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  text-align: center;
+  z-index: 10;
+}
+
+.onboarding-title {
+  font-family: var(--f-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.dark-onboarding .onboarding-title {
+  color: #8C8C8C;
+}
+
+.light-onboarding .onboarding-title {
+  color: #585A5A;
+}
+
+.theme-options {
+  display: flex;
+  gap: 16px;
+}
+
+.theme-opt-btn {
+  padding: 12px 20px !important;
+  font-size: 11px !important;
+  transition: background-color 200ms ease, border-color 200ms ease !important;
+}
+
+.dark-onboarding .theme-opt-btn {
+  border-color: #333333;
+  color: #EDEDED;
+}
+
+.dark-onboarding .theme-opt-btn:hover {
+  background-color: #FFFFFF;
+  color: #000000;
+  border-color: #FFFFFF;
+}
+
+.light-onboarding .theme-opt-btn {
+  border-color: #CFCFCF;
+  color: #1C1C1C;
+}
+
+.light-onboarding .theme-opt-btn:hover {
+  background-color: #000000;
+  color: #FFFFFF;
+  border-color: #000000;
+}
+
+.onboarding-brand {
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  position: absolute;
+  bottom: 40px;
+}
+
+.dark-onboarding .onboarding-brand {
+  color: #5A5A5A;
+}
+
+.light-onboarding .onboarding-brand {
+  color: #9A9A9A;
+}
+
+.welcome-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.welcome-header {
+  font-size: 72px;
+  letter-spacing: 0.02em;
+  margin: 0;
+  text-transform: uppercase;
+  font-variation-settings: 'ROND' 100;
+  font-weight: 400;
+}
+
+.dark-onboarding .welcome-header {
+  color: #FFFFFF;
+}
+
+.light-onboarding .welcome-header {
+  color: #000000;
+}
+
+/* Theme Option Column Layout & Hover Effects */
+.theme-option-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.onboarding-theme-icon {
+  color: var(--secondary);
+  transition: transform 200ms ease, color 200ms ease;
+}
+
+.dark-onboarding .onboarding-theme-icon {
+  color: #8C8C8C;
+}
+
+.light-onboarding .onboarding-theme-icon {
+  color: #585A5A;
+}
+
+.theme-option-col:hover .onboarding-theme-icon {
+  transform: scale(1.15);
+  color: var(--accent-text);
+}
+
