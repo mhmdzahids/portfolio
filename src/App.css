@@ -243,7 +243,7 @@ body.light-theme .glyph-led {
 /* Projects grid and project cards */
 .projects-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 24px;
   margin-bottom: 48px;
 }
@@ -657,7 +657,14 @@ body.light-theme .pixel-photo-container:hover .about-photo {
 
 .theme-option-col:hover .onboarding-theme-icon {
   transform: scale(1.15);
-  color: var(--accent-text);
+}
+
+.theme-option-col:hover .moon-icon {
+  color: #FEF08A;
+}
+
+.theme-option-col:hover .sun-icon {
+  color: #F97316;
 }
 
 /* Clickable Project Research Cards */
@@ -669,5 +676,45 @@ body.light-theme .pixel-photo-container:hover .about-photo {
 .project-link-card:hover {
   transform: translateY(-4px);
   border-color: var(--accent-text) !important;
+}
+
+/* Mobile Responsiveness Refinements */
+@media (max-width: 600px) {
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .app-header > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-options {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .welcome-header {
+    font-size: 48px;
+  }
+  
+  .theme-select-container {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 400px) {
+  .glyph-grid {
+    width: 200px;
+    height: 200px;
+    gap: 1px;
+  }
 }
 

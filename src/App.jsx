@@ -218,7 +218,7 @@ export default function App() {
             <h2 className="mono-text onboarding-title">SELECT_SYSTEM_THEME.CFG</h2>
             <div className="theme-options">
               <div className="theme-option-col">
-                <DotMatrixIcon name="moon" size="36px" className="onboarding-theme-icon" />
+                <DotMatrixIcon name="moon" size="36px" className="onboarding-theme-icon moon-icon" />
                 <button
                   className="btn btn-outline theme-opt-btn"
                   onClick={() => selectInitialTheme('dark')}
@@ -227,7 +227,7 @@ export default function App() {
                 </button>
               </div>
               <div className="theme-option-col">
-                <DotMatrixIcon name="sun" size="36px" className="onboarding-theme-icon" />
+                <DotMatrixIcon name="sun" size="36px" className="onboarding-theme-icon sun-icon" />
                 <button
                   className="btn btn-outline theme-opt-btn"
                   onClick={() => selectInitialTheme('light')}
@@ -236,7 +236,7 @@ export default function App() {
                 </button>
               </div>
             </div>
-            <div className="onboarding-brand mono-text">M_ZAHID.DEV // V1.0</div>
+            <div className="onboarding-brand mono-text">Muhammad Zahid Setiansyah // V1.0</div>
           </div>
         ) : (
           <div className="welcome-container">
@@ -253,7 +253,7 @@ export default function App() {
       <header className="app-header">
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span className="display-text" style={{ fontSize: '20px', letterSpacing: '0.05em' }}>
-            M_ZAHID.DEV
+            E-PORTFOLIO
           </span>
           <span style={{ color: 'var(--line-2)' }}>|</span>
           <div className="header-status">
@@ -341,7 +341,7 @@ export default function App() {
             <p style={{ fontSize: '14px', color: 'var(--secondary)', lineHeight: '1.6', margin: 0 }}>
               My focus is on creating developer tools and medical simulation systems that feel responsive and precise. I enjoy translating complex interactive systems into clean, industrial designs with rich visual feedback.
             </p>
-            <div style={{ display: 'flex', gap: '12px', marginTop: '24px' }}>
+            <div style={{ display: 'flex', gap: '12px', marginTop: '24px', flexWrap: 'wrap' }}>
               <a href={cvPdf} target="_blank" rel="noopener noreferrer" className="btn btn-primary" style={{ textDecoration: 'none' }}>
                 VIEW_CV.PDF
                 <DotMatrixIcon name="arrowRight" size="14px" style={{ color: 'inherit' }} />
@@ -434,7 +434,7 @@ export default function App() {
           <div className="glass-card project-card">
             <div className="project-header">
               <h3 className="project-title">MedScan VR</h3>
-              <DotMatrixIcon name="code" size="20px" style={{ color: 'var(--secondary)' }} />
+              <DotMatrixIcon name="vr" size="20px" style={{ color: 'var(--secondary)' }} />
             </div>
             <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
               Hospital Triage VR Simulation Game. Integrated Unity VR controllers, custom grabbable tools, and MQTT sensor telemetry.
@@ -454,7 +454,7 @@ export default function App() {
           <div className="glass-card project-card">
             <div className="project-header">
               <h3 className="project-title">MBG Driver</h3>
-              <DotMatrixIcon name="link" size="20px" style={{ color: 'var(--secondary)' }} />
+              <DotMatrixIcon name="car" size="20px" style={{ color: 'var(--secondary)' }} />
             </div>
             <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
               Low-Poly Arcade delivery game. Features a vehicle controller, delivery timers, and dynamic narrative consequences.
@@ -494,7 +494,7 @@ export default function App() {
           <div className="glass-card project-card">
             <div className="project-header">
               <h3 className="project-title">Smart-Triage</h3>
-              <DotMatrixIcon name="link" size="20px" style={{ color: 'var(--secondary)' }} />
+              <DotMatrixIcon name="health" size="20px" style={{ color: 'var(--secondary)' }} />
             </div>
             <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
               Hospital triage clinical decision support. Calculates MEOWS scores using integrated AI and role-based portals (Admin, Nurse, Doctor).
@@ -598,13 +598,13 @@ export default function App() {
                 <td>2025 (FEB - MAY)</td>
                 <td>WEB DEVELOPER (ENTREPRENEURSHIP PROJECT)</td>
                 <td>BENERINAJA.MY.ID (LAPTOP REPAIR SERVICE)</td>
-                <td className="num">03</td>
+                <td className="num">—</td>
               </tr>
               <tr>
                 <td>2025 (JAN - APR)</td>
                 <td>COMPUTER TEACHER & WEB DEVELOPER (PART-TIME)</td>
                 <td>SMP PLUS RAYHAN, CIKARANG</td>
-                <td className="num">04</td>
+                <td className="num">—</td>
               </tr>
             </tbody>
           </table>

@@ -280,14 +280,13 @@ body:not(.light-theme) .glass-card {
   font-weight: 500;
 }
 
-.data-table td.num {
+.data-table td.num, .data-table th.num {
   text-align: right;
   font-family: var(--f-mono);
 }
 
 .data-table tr {
   transition: background-color 200ms ease;
-  position: relative;
 }
 
 /* Active/hovered row gets raised bg and red accent bar on left */
@@ -295,7 +294,11 @@ body:not(.light-theme) .glass-card {
   background-color: var(--raised);
 }
 
-.data-table tbody tr::before {
+.data-table tbody td {
+  position: relative;
+}
+
+.data-table tbody td:first-child::before {
   content: '';
   position: absolute;
   left: 0;
@@ -305,9 +308,10 @@ body:not(.light-theme) .glass-card {
   background-color: var(--accent);
   opacity: 0;
   transition: opacity 200ms ease;
+  pointer-events: none;
 }
 
-.data-table tbody tr:hover::before {
+.data-table tbody tr:hover td:first-child::before {
   opacity: 1;
 }
 
