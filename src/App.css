@@ -250,6 +250,12 @@ body.light-theme .glyph-led {
 
 .project-card {
   text-align: left;
+  transition: transform 200ms ease-in-out, opacity 250ms ease-in-out;
+}
+
+.project-card.dimmed {
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 .project-header {

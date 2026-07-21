@@ -22,6 +22,9 @@ export default function App() {
   const [loadingStage, setLoadingStage] = useState('theme-select');
   const [welcomeText, setWelcomeText] = useState('');
 
+  // Projects filter state: 'all' | 'game' | 'web' | 'ml'
+  const [projectFilter, setProjectFilter] = useState('all');
+
   // Live Clock State
   const [time, setTime] = useState(new Date());
 
@@ -71,6 +74,18 @@ export default function App() {
     }, 250); // 250ms per character (total ~1.5s)
 
     return () => clearInterval(typingInterval);
+  }, [loadingStage]);
+
+  // Disable body scroll when onboarding overlay is active
+  useEffect(() => {
+    if (loadingStage !== 'done') {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [loadingStage]);
 
   const selectInitialTheme = (selectedTheme) => {
@@ -208,14 +223,14 @@ export default function App() {
     }
   ];
 
-  if (loadingStage !== 'done') {
-    const isLightOnboarding = theme === 'light';
-    const onboardingThemeClass = isLightOnboarding ? 'light-onboarding' : 'dark-onboarding';
-    const fadeOutClass = loadingStage === 'fade-out' ? 'fade-out' : '';
+  const isLightOnboarding = theme === 'light';
+  const onboardingThemeClass = isLightOnboarding ? 'light-onboarding' : 'dark-onboarding';
+  const fadeOutClass = loadingStage === 'fade-out' ? 'fade-out' : '';
 
-    return (
-      <>
-        <CustomCursor />
+  return (
+    <>
+      <CustomCursor />
+      {loadingStage !== 'done' && (
         <div className={`onboarding-screen ${onboardingThemeClass} ${fadeOutClass}`}>
           {loadingStage === 'theme-select' ? (
             <div className="theme-select-container">
@@ -248,13 +263,7 @@ export default function App() {
             </div>
           )}
         </div>
-      </>
-    );
-  }
-
-  return (
-    <>
-      <CustomCursor />
+      )}
       <div className="app-container app-wrapper">
         {/* 1. Header Area */}
         <header className="app-header">
@@ -427,7 +436,7 @@ export default function App() {
 
         {/* 4. Projects Section */}
         <section id="projects-section" style={{ marginBottom: '64px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '24px' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', marginBottom: '16px' }}>
             <h2 className="mono-text" style={{ fontSize: '14px', letterSpacing: '0.08em' }}>
               PROJECTS.TXT
             </h2>
@@ -436,9 +445,22 @@ export default function App() {
             </span>
           </div>
 
+          {/* Project Category Filter Switch */}
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', flexWrap: 'wrap' }}>
+            {['all', 'game', 'web', 'ml'].map((cat) => (
+              <button
+                key={cat}
+                className={`chip ${projectFilter === cat ? 'active' : ''}`}
+                onClick={() => setProjectFilter(cat)}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
           <div className="projects-container">
             {/* Project 1 */}
-            <div className="glass-card project-card">
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'game' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">MedScan VR</h3>
                 <DotMatrixIcon name="vr" size="20px" style={{ color: 'var(--secondary)' }} />
@@ -458,7 +480,7 @@ export default function App() {
             </div>
 
             {/* Project 2 */}
-            <div className="glass-card project-card">
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'game' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">MBG Driver</h3>
                 <DotMatrixIcon name="car" size="20px" style={{ color: 'var(--secondary)' }} />
@@ -478,7 +500,7 @@ export default function App() {
             </div>
 
             {/* Project 3 */}
-            <div className="glass-card project-card">
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'web' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">RISE (Rayhan Information System Education)</h3>
                 <DotMatrixIcon name="terminal" size="20px" style={{ color: 'var(--secondary)' }} />
@@ -498,7 +520,7 @@ export default function App() {
             </div>
 
             {/* Project 4 */}
-            <div className="glass-card project-card">
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'web' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">Smart-Triage</h3>
                 <DotMatrixIcon name="health" size="20px" style={{ color: 'var(--secondary)' }} />
@@ -522,7 +544,7 @@ export default function App() {
               href={paper1Pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card project-card project-link-card"
+              className={`glass-card project-card project-link-card ${projectFilter !== 'all' && projectFilter !== 'ml' ? 'dimmed' : ''}`}
               style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
             >
               <div className="project-header">
@@ -548,7 +570,7 @@ export default function App() {
               href={paper2Pdf}
               target="_blank"
               rel="noopener noreferrer"
-              className="glass-card project-card project-link-card"
+              className={`glass-card project-card project-link-card ${projectFilter !== 'all' && projectFilter !== 'ml' ? 'dimmed' : ''}`}
               style={{ textDecoration: 'none', color: 'inherit', display: 'flex', flexDirection: 'column', alignItems: 'stretch' }}
             >
               <div className="project-header">
