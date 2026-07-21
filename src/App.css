@@ -729,3 +729,11 @@ body.light-theme .pixel-photo-container:hover .about-photo {
   }
 }
 
+.contact-link {
+  transition: opacity 200ms ease;
+}
+
+.contact-link:hover {
+  opacity: 0.75;
+}
+

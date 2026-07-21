@@ -202,9 +202,9 @@ export default function App() {
     {
       id: 2,
       title: "Dean's Honor List Award",
-      issuer: 'President University',
-      year: '2024',
-      credentialId: 'PU-DEAN-2024',
+      issuer: 'INTI International University',
+      year: '2026',
+      credentialId: 'INTI-DEAN-2026',
       verifyUrl: '#',
       image: deanImg,
       icon: 'user',
@@ -721,11 +721,27 @@ export default function App() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', fontFamily: 'var(--f-mono)', fontSize: '12px' }}>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <DotMatrixIcon name="envelope" size="18px" />
-                <span>mhmdzahids@gmail.com</span>
+                <a href="mailto:mhmdzahids@gmail.com" className="contact-link" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  mhmdzahids@gmail.com
+                </a>
               </div>
               <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                 <DotMatrixIcon name="link" size="18px" />
-                <span>linkedin.com/in/muhammad-zahid-setiansyah</span>
+                <a href="https://linkedin.com/in/muhammad-zahid-setiansyah" target="_blank" rel="noopener noreferrer" className="contact-link" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  linkedin.com/in/muhammad-zahid-setiansyah
+                </a>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <DotMatrixIcon name="github" size="18px" />
+                <a href="https://github.com/mhmdzahids" target="_blank" rel="noopener noreferrer" className="contact-link" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  github.com/mhmdzahids
+                </a>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+                <DotMatrixIcon name="tiktok" size="18px" />
+                <a href="https://www.tiktok.com/@iizaiah_" target="_blank" rel="noopener noreferrer" className="contact-link" style={{ color: 'inherit', textDecoration: 'none' }}>
+                  tiktok.com/@iizaiah_
+                </a>
               </div>
             </div>
           </div>
