@@ -1,0 +1,65 @@
+/* Custom Cursor Styling */
+
+.custom-cursor-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 999999; /* Ensure it floats above everything else */
+  display: block; /* Avoid flex collapsing behavior */
+}
+
+/* Custom Cursor Box (The red outline square) */
+.custom-cursor-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 24px; /* Distinct square size */
+  height: 24px;
+  border: 2px solid var(--accent); /* Solid red outline exactly like the image */
+  background-color: transparent;
+  border-radius: 0 !important; /* Force pure square corners */
+  box-sizing: border-box;
+  transition: 
+    width 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover State: Rotates to a diamond outline, keeps size, and adds a transparent red tint */
+.custom-cursor-box.hovered {
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: rgba(215, 25, 33, 0.08); /* 8% opacity of Nothing Red */
+  border-color: var(--accent);
+}
+
+/* Click State: Compresses/shrinks */
+.custom-cursor-box.clicked {
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%) rotate(0deg);
+  background-color: rgba(215, 25, 33, 0.2);
+}
+
+/* Combined Hover + Click State */
+.custom-cursor-box.hovered.clicked {
+  width: 18px;
+  height: 18px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  background-color: rgba(215, 25, 33, 0.25);
+}
+
+/* Hide default cursor only on devices with hover capacity (desktop/pointer mouse) */
+@media (hover: hover) and (pointer: fine) {
+  html, body, *, a, button, input, select, textarea, body .glyph-led.disabled {
+    cursor: none !important;
+  }
+}
