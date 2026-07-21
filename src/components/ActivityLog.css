@@ -129,13 +129,54 @@
   height: 100%;
   object-fit: cover;
   opacity: 0;
-  transition: opacity 600ms ease-in-out;
+  transition: opacity 150ms ease-in-out;
   z-index: 1;
 }
 
 .activity-slider-img.active {
   opacity: 1;
   z-index: 2;
+}
+
+/* Matrix Transition Styles */
+.matrix-transition-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  pointer-events: none;
+}
+
+.matrix-cell {
+  background-color: var(--bg);
+  opacity: 0;
+  transform: scale(0);
+  animation: matrixBlock 800ms ease-in-out forwards;
+}
+
+@keyframes matrixBlock {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+    border-radius: 50%;
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1.1);
+    border-radius: 0;
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.1);
+    border-radius: 0;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0);
+    border-radius: 50%;
+  }
 }
 
 /* Discrete Tick Marks Selector (Dashes matching segmented bar) */

@@ -8,6 +8,8 @@ import articleImg from '../assets/activities/article.png';
 
 export default function ActivityLog() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
   const autoSlideTimer = useRef(null);
 
   const activities = [
@@ -73,17 +75,39 @@ export default function ActivityLog() {
     return () => stopTimer();
   }, []);
 
+  useEffect(() => {
+    if (activeIndex === displayIndex) return;
+
+    setIsAnimating(true);
+
+    const imageSwitchTimeout = setTimeout(() => {
+      setDisplayIndex(activeIndex);
+    }, 500);
+
+    const animEndTimeout = setTimeout(() => {
+      setIsAnimating(false);
+    }, 980);
+
+    return () => {
+      clearTimeout(imageSwitchTimeout);
+      clearTimeout(animEndTimeout);
+    };
+  }, [activeIndex]);
+
   const handleSelectSlide = (index) => {
+    if (isAnimating) return;
     setActiveIndex(index);
     startTimer(); // Reset timer on manual action
   };
 
   const handlePrev = () => {
+    if (isAnimating) return;
     setActiveIndex((prev) => (prev - 1 + activities.length) % activities.length);
     startTimer();
   };
 
   const handleNext = () => {
+    if (isAnimating) return;
     setActiveIndex((prev) => (prev + 1) % activities.length);
     startTimer();
   };
@@ -169,9 +193,27 @@ export default function ActivityLog() {
             key={act.id}
             src={act.image}
             alt={act.title}
-            className={`activity-slider-img ${index === activeIndex ? 'active' : ''}`}
+            className={`activity-slider-img ${index === displayIndex ? 'active' : ''}`}
           />
         ))}
+
+        {/* Matrix Transition Overlay */}
+        {isAnimating && (
+          <div className="matrix-transition-overlay">
+            {Array.from({ length: 100 }).map((_, i) => {
+              const delay = ((i * 17) % 20) * 10; // Stable pseudo-random delay between 0ms and 190ms
+              return (
+                <div
+                  key={i}
+                  className="matrix-cell"
+                  style={{
+                    animationDelay: `${delay}ms`,
+                  }}
+                />
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

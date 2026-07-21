@@ -574,9 +574,14 @@ body.light-theme .pixel-photo-container:hover .about-photo {
 }
 
 .theme-opt-btn {
-  padding: 12px 20px !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px 32px !important;
   font-size: 11px !important;
-  transition: background-color 200ms ease, border-color 200ms ease !important;
+  height: auto !important;
+  transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease !important;
 }
 
 .dark-onboarding .theme-opt-btn {
@@ -661,16 +666,16 @@ body.light-theme .pixel-photo-container:hover .about-photo {
   color: #585A5A;
 }
 
-.theme-option-col:hover .onboarding-theme-icon {
-  transform: scale(1.15);
+.theme-opt-btn:hover .onboarding-theme-icon {
+  transform: scale(1.1);
 }
 
-.theme-option-col:hover .moon-icon {
-  color: #FEF08A;
+.dark-onboarding .theme-opt-btn:hover .onboarding-theme-icon {
+  color: #000000;
 }
 
-.theme-option-col:hover .sun-icon {
-  color: #F97316;
+.light-onboarding .theme-opt-btn:hover .onboarding-theme-icon {
+  color: #FFFFFF;
 }
 
 /* Clickable Project Research Cards */

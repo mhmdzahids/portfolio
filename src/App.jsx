@@ -236,24 +236,20 @@ export default function App() {
             <div className="theme-select-container">
               <h2 className="mono-text onboarding-title">SELECT_SYSTEM_THEME.CFG</h2>
               <div className="theme-options">
-                <div className="theme-option-col">
+                <button
+                  className="btn btn-outline theme-opt-btn"
+                  onClick={() => selectInitialTheme('dark')}
+                >
                   <DotMatrixIcon name="moon" size="36px" className="onboarding-theme-icon moon-icon" />
-                  <button
-                    className="btn btn-outline theme-opt-btn"
-                    onClick={() => selectInitialTheme('dark')}
-                  >
-                    [ DARK_MODE ]
-                  </button>
-                </div>
-                <div className="theme-option-col">
+                  <span>[ DARK_MODE ]</span>
+                </button>
+                <button
+                  className="btn btn-outline theme-opt-btn"
+                  onClick={() => selectInitialTheme('light')}
+                >
                   <DotMatrixIcon name="sun" size="36px" className="onboarding-theme-icon sun-icon" />
-                  <button
-                    className="btn btn-outline theme-opt-btn"
-                    onClick={() => selectInitialTheme('light')}
-                  >
-                    [ LIGHT_MODE ]
-                  </button>
-                </div>
+                  <span>[ LIGHT_MODE ]</span>
+                </button>
               </div>
               <div className="onboarding-brand mono-text">Muhammad Zahid Setiansyah // V1.0</div>
             </div>
@@ -344,7 +340,7 @@ export default function App() {
               ABOUT_ME.TXT // PROFILE & TECH STACK
             </h2>
             <span className="mono-text" style={{ fontSize: '11px', color: 'var(--secondary)' }}>
-              ROLE: FULL-STACK XR / IOT
+              ROLE: GAME DEVELOPER / FULL-STACK XR / 3D MODELER / IOT
             </span>
           </div>
 
