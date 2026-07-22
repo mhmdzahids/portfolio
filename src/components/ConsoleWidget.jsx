@@ -26,9 +26,11 @@ const COMMANDS = {
   ],
   projects: [
     'PROJECT HIGHLIGHTS:',
-    '  1. MEDSCAN VR    - Hospital Triage VR simulation with ESP32 & MQTT (100% Tests Passed)',
-    '  2. MBG DRIVER    - Low-poly arcade delivery game with narrative consequence engine',
-    '  3. SMP-RAYHAN    - School Management System administrative web application'
+    '  1. MBG DRIVER    - Low-poly arcade delivery game (70% Stages Complete)',
+    '  2. ATTN GUARD    - Android passive behavioral sensing wellbeing system (In Progress)',
+    '  3. MEDSCAN VR    - Hospital Triage VR simulation with ESP32 & MQTT',
+    '  4. SMART TRIAGE - Clinical support system calculating MEOWS scores using AI',
+    '  5. RISE SCHOOL   - Administrative system managing school student/teacher workflows'
   ],
   skills: [
     'TECHNICAL SKILLS:',

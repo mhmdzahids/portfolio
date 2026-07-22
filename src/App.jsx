@@ -437,7 +437,7 @@ export default function App() {
               PROJECTS.TXT
             </h2>
             <span className="mono-text" style={{ fontSize: '11px', color: 'var(--secondary)' }}>
-              TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>06</span> ACTIVE
+              TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>07</span> ACTIVE
             </span>
           </div>
 
@@ -455,27 +455,7 @@ export default function App() {
           </div>
 
           <div className="projects-container">
-            {/* Project 1 */}
-            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'game' ? 'dimmed' : ''}`}>
-              <div className="project-header">
-                <h3 className="project-title">MedScan VR</h3>
-                <DotMatrixIcon name="vr" size="20px" style={{ color: 'var(--secondary)' }} />
-              </div>
-              <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
-                Hospital Triage VR Simulation Game. Integrated Unity VR controllers, custom grabbable tools, and MQTT sensor telemetry.
-              </p>
-              <div className="project-tech">
-                <span className="tech-tag">UNITY VR</span>
-                <span className="tech-tag">C#</span>
-                <span className="tech-tag">ESP32</span>
-                <span className="tech-tag">MQTT</span>
-              </div>
-              <div className="project-stat">
-                <SegmentedBar value={100} label="TESTS PASSED" limit={85} />
-              </div>
-            </div>
-
-            {/* Project 2 */}
+            {/* Project 1: MBG Driver */}
             <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'game' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">MBG Driver</h3>
@@ -495,27 +475,47 @@ export default function App() {
               </div>
             </div>
 
-            {/* Project 3 */}
-            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'web' ? 'dimmed' : ''}`}>
+            {/* Project 2: Attention-Guard */}
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'ml' ? 'dimmed' : ''}`}>
               <div className="project-header">
-                <h3 className="project-title">RISE (Rayhan Information System Education)</h3>
-                <DotMatrixIcon name="terminal" size="20px" style={{ color: 'var(--secondary)' }} />
+                <h3 className="project-title">Attention-Guard</h3>
+                <DotMatrixIcon name="shield" size="20px" style={{ color: 'var(--secondary)' }} />
               </div>
               <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
-                Administrative school RISE (Rayhan Information System Education)ing student, teacher, and class workflows, built alongside CS tutoring.
+                Passive behavioral sensing framework for Android. Analyzes system telemetry (UsageStats, Accessibility, ActivityManager) with a CNN-LSTM architecture to calculate Attention Performance Indicator (API) Score.
               </p>
               <div className="project-tech">
-                <span className="tech-tag">PHP</span>
-                <span className="tech-tag">HTML</span>
-                <span className="tech-tag">CSS</span>
-                <span className="tech-tag">JS</span>
+                <span className="tech-tag">KOTLIN</span>
+                <span className="tech-tag">ANDROID</span>
+                <span className="tech-tag">CNN-LSTM</span>
+                <span className="tech-tag">PYTHON</span>
               </div>
               <div className="project-stat">
-                <SegmentedBar value={100} label="INTEGRATION" limit={85} />
+                <SegmentedBar value={80} label="SYSTEM IN PROGRESS" limit={85} />
               </div>
             </div>
 
-            {/* Project 4 */}
+            {/* Project 3: MedScan VR */}
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'game' ? 'dimmed' : ''}`}>
+              <div className="project-header">
+                <h3 className="project-title">MedScan VR</h3>
+                <DotMatrixIcon name="vr" size="20px" style={{ color: 'var(--secondary)' }} />
+              </div>
+              <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
+                Hospital Triage VR Simulation Game. Integrated Unity VR controllers, custom grabbable tools, and MQTT sensor telemetry.
+              </p>
+              <div className="project-tech">
+                <span className="tech-tag">UNITY VR</span>
+                <span className="tech-tag">C#</span>
+                <span className="tech-tag">ESP32</span>
+                <span className="tech-tag">MQTT</span>
+              </div>
+              <div className="project-stat">
+                <SegmentedBar value={100} label="TESTS PASSED" limit={85} />
+              </div>
+            </div>
+
+            {/* Project 4: Smart-Triage */}
             <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'web' ? 'dimmed' : ''}`}>
               <div className="project-header">
                 <h3 className="project-title">Smart-Triage</h3>
@@ -535,7 +535,27 @@ export default function App() {
               </div>
             </div>
 
-            {/* Project 5: CNN vs Statistical Learning Paper */}
+            {/* Project 5: RISE */}
+            <div className={`glass-card project-card ${projectFilter !== 'all' && projectFilter !== 'web' ? 'dimmed' : ''}`}>
+              <div className="project-header">
+                <h3 className="project-title">RISE (Rayhan Information System Education)</h3>
+                <DotMatrixIcon name="terminal" size="20px" style={{ color: 'var(--secondary)' }} />
+              </div>
+              <p style={{ fontSize: '14px', color: 'var(--secondary)', marginBottom: '16px', minHeight: '63px' }}>
+                Administrative school RISE (Rayhan Information System Education)ing student, teacher, and class workflows, built alongside CS tutoring.
+              </p>
+              <div className="project-tech">
+                <span className="tech-tag">PHP</span>
+                <span className="tech-tag">HTML</span>
+                <span className="tech-tag">CSS</span>
+                <span className="tech-tag">JS</span>
+              </div>
+              <div className="project-stat">
+                <SegmentedBar value={100} label="INTEGRATION" limit={85} />
+              </div>
+            </div>
+
+            {/* Project 6: CNN vs Statistical Models */}
             <a
               href={paper1Pdf}
               target="_blank"
@@ -561,7 +581,7 @@ export default function App() {
               </div>
             </a>
 
-            {/* Project 6: Return-Cancellation Risk Paper */}
+            {/* Project 7: Return-Cancellation Risk */}
             <a
               href={paper2Pdf}
               target="_blank"

@@ -251,6 +251,14 @@ body.light-theme .glyph-led {
 .project-card {
   text-align: left;
   transition: transform 200ms ease-in-out, opacity 250ms ease-in-out;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.project-card p:last-of-type {
+  flex-grow: 1;
+  margin: 0 0 16px 0 !important;
 }
 
 .project-card.dimmed {
