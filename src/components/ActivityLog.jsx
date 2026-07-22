@@ -167,6 +167,7 @@ export default function ActivityLog() {
       // Growing dot-matrix layer over it
       const t = animProgress;
       ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
       for (let row = 0; row < gridH; row++) {
         for (let col = 0; col < gridW; col++) {
           const x = col * cellSize + cellSize / 2;
@@ -174,12 +175,12 @@ export default function ActivityLog() {
           const lumA = gridA[row * gridW + col];
           const r = t * lumA * maxRadius;
           if (r > 0.1) {
-            ctx.beginPath();
+            ctx.moveTo(x + r, y);
             ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fill();
           }
         }
       }
+      ctx.fill();
     } else if (animProgress <= 2.0) {
       // STAGE 2 (1.0 to 2.0) [RADIAL MATRIX WIPE]
       const t = animProgress - 1.0;
@@ -191,6 +192,7 @@ export default function ActivityLog() {
       const wavefrontPos = t * (maxDistance + transitionWidth);
 
       ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
       for (let row = 0; row < gridH; row++) {
         for (let col = 0; col < gridW; col++) {
           const x = col * cellSize + cellSize / 2;
@@ -216,12 +218,12 @@ export default function ActivityLog() {
 
           const r = interpolatedLuminance * maxRadius;
           if (r > 0.1) {
-            ctx.beginPath();
+            ctx.moveTo(x + r, y);
             ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fill();
           }
         }
       }
+      ctx.fill();
     } else {
       // STAGE 3 (2.0 to 3.0) [MATERIALIZATION / REVEAL]
       const t = animProgress - 2.0;
@@ -233,6 +235,7 @@ export default function ActivityLog() {
 
       // Fade out and shrink dot-matrix of Image B
       ctx.fillStyle = `rgba(255, 255, 255, ${1.0 - t})`;
+      ctx.beginPath();
       for (let row = 0; row < gridH; row++) {
         for (let col = 0; col < gridW; col++) {
           const x = col * cellSize + cellSize / 2;
@@ -240,12 +243,12 @@ export default function ActivityLog() {
           const lumB = gridB[row * gridW + col];
           const r = (1.0 - t) * lumB * maxRadius;
           if (r > 0.1) {
-            ctx.beginPath();
+            ctx.moveTo(x + r, y);
             ctx.arc(x, y, r, 0, Math.PI * 2);
-            ctx.fill();
           }
         }
       }
+      ctx.fill();
     }
   }, []);
 
@@ -262,6 +265,9 @@ export default function ActivityLog() {
 
     const startTime = performance.now();
     const duration = 1500; // 1.5 seconds transition duration
+    const fps = 60;
+    const fpsInterval = 1000 / fps;
+    let lastDrawTime = startTime;
 
     const imgA = loadedImages.current[fromIdx];
     const imgB = loadedImages.current[toIdx];
@@ -281,7 +287,11 @@ export default function ActivityLog() {
       const progress = Math.min(elapsed / duration, 1.0);
       const animProgress = progress * 3.0; // Scale 0.0 to 3.0
 
-      renderFrame(ctx, imgA, imgB, gridA, gridB, animProgress);
+      // Only draw if 16.7ms has passed, or it is the final frame
+      if (now - lastDrawTime >= fpsInterval || progress === 1.0) {
+        lastDrawTime = now;
+        renderFrame(ctx, imgA, imgB, gridA, gridB, animProgress);
+      }
 
       if (progress < 1.0) {
         animationFrameId.current = requestAnimationFrame(animate);
