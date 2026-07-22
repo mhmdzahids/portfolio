@@ -437,7 +437,7 @@ export default function App() {
               PROJECTS.TXT
             </h2>
             <span className="mono-text" style={{ fontSize: '11px', color: 'var(--secondary)' }}>
-              TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>07</span> ACTIVE
+              TOTAL: <span className="step-number" style={{ fontSize: '14px', color: 'var(--display)' }}>07</span> ACTIVE
             </span>
           </div>
 
@@ -688,7 +688,7 @@ export default function App() {
               CERTIFICATES.DAT
             </h2>
             <span className="mono-text" style={{ fontSize: '11px', color: 'var(--secondary)' }}>
-              TOTAL: <span className="step-number" style={{ fontSize: '14px' }}>03</span> VERIFIED
+              TOTAL: <span className="step-number" style={{ fontSize: '14px', color: 'var(--display)' }}>03</span> VERIFIED
             </span>
           </div>
 
