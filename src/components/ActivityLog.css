@@ -111,6 +111,38 @@
   font-size: 10px !important;
 }
 
+.transition-trigger-btn {
+  font-size: 9px !important;
+  padding: 6px 10px !important;
+  background-color: var(--display) !important;
+  color: var(--bg) !important;
+  border: 1px solid var(--display) !important;
+  transition: all 200ms ease !important;
+}
+
+.transition-trigger-btn:hover:not(:disabled) {
+  background-color: transparent !important;
+  color: var(--display) !important;
+}
+
+.transition-trigger-btn:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+}
+
+.slider-dash-btn:disabled {
+  cursor: not-allowed !important;
+  opacity: 0.5 !important;
+}
+
+.activity-transition-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: #000000;
+}
+
 /* Image Viewport */
 .activity-image-viewport {
   position: relative;
